@@ -1,9 +1,14 @@
+// Represents a person with a connection to the system.
+// A user can have direct messages or belong to a chatroom
+// and has their own version of a message with timestamps
+// and statuses
 struct User {
+    id: String,
     name: String,
-    chat_rooms: Vec<Chat>,
+    chat_rooms: Vec<ChatRoom>,
     direct_messages: Vec<Message>,
     // used to display time in the correct zone
-    local: String,
+    timezone: String,
 }
 
 enum MessageKind {
@@ -11,9 +16,10 @@ enum MessageKind {
     Leave,
     Unread,
     Read,
+    Deleted,
 }
 
-struct Message {
+pub struct Message {
     kind: MessageKind,
     contents: String,
     // time the message was created
@@ -22,7 +28,7 @@ struct Message {
     created_by: String,
 }
 
-struct Chat {
+struct ChatRoom {
     name: String,
     messages: Vec<Message>,
 }
