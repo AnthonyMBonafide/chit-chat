@@ -13,3 +13,4 @@ name = "chitchatclient"
 path = "src/bin/chat.rs"
 
 [dependencies]
+redis = "0.24.0"

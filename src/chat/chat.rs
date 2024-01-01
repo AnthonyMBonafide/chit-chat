@@ -11,21 +11,39 @@ struct User {
     timezone: String,
 }
 
-enum MessageKind {
+#[derive(Debug)]
+pub enum MessageKind {
     Join,
     Leave,
     Unread,
     Read,
     Deleted,
 }
-
+#[derive(Debug)]
 pub struct Message {
     kind: MessageKind,
-    contents: String,
+    contents: Option<String>,
     // time the message was created
     created_at: String,
     // User id of the person who created the message
     created_by: String,
+}
+
+impl Message {
+    /// Creates a new [`Message`].
+    pub fn new(
+        kind: MessageKind,
+        contents: Option<String>,
+        created_at: String,
+        created_by: String,
+    ) -> Self {
+        Self {
+            kind,
+            contents,
+            created_at,
+            created_by,
+        }
+    }
 }
 
 struct ChatRoom {
