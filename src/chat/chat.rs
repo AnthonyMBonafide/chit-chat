@@ -12,15 +12,22 @@ struct User {
 }
 
 #[derive(Debug)]
-pub enum MessageKind {
+pub enum MessageStatus {
     Join,
     Leave,
     Unread,
     Read,
     Deleted,
 }
+
+#[derive(Debug)]
+pub enum MessageKind {
+    Direct(String),
+    Group(String),
+}
 #[derive(Debug)]
 pub struct Message {
+    status: MessageStatus,
     kind: MessageKind,
     contents: Option<String>,
     // time the message was created
@@ -32,13 +39,13 @@ pub struct Message {
 impl Message {
     /// Creates a new [`Message`].
     pub fn new(
-        kind: MessageKind,
+        kind: MessageStatus,
         contents: Option<String>,
         created_at: String,
         created_by: String,
     ) -> Self {
         Self {
-            kind,
+            status: kind,
             contents,
             created_at,
             created_by,

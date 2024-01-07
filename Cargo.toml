@@ -13,4 +13,5 @@ name = "chitchatclient"
 path = "src/bin/chat.rs"
 
 [dependencies]
-redis = "0.24.0"
+mysql = "24.0.0"
+
